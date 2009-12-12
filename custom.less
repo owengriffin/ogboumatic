@@ -234,18 +234,34 @@ width:435px;
 .entry-meta .author{font-size:0.8em;color:@colour_darkblue}
 .entry-meta .meta-sep{}
 .entry-meta abbr{}
-.entry-content{margin:24px 0 0 0;padding:0;overflow:hidden;}
-.entry-content p {margin-bottom:24px;}
-.entry-content a {text-decoration:none;}
-.entry-content h1{font-weight:bold;font-size:1.6em;margin:0;padding:36px 0 0 0}
-.entry-content h2{font-weight:bold;font-size:1.5em;margin:0;padding:24px 0 0 0}
-.entry-content h3{font-weight:bold;font-size:1.4em;margin:0;padding:12px 0 0 0}
-.entry-content h4{font-weight:bold;font-size:1.3em;margin:0;padding:6px 0 0 0}
-.entry-content h5{font-weight:bold;font-size:1.2em;}
-.entry-content h6{font-weight:bold;font-size:1.1em;}
-.entry-content ul{list-style:square;margin:0 0 24px 1.5em}
-.entry-content dt{font-weight:bold}
-.entry-content dd{margin:0 0 24px 0}
+.entry-content {
+  margin:24px 0 0 0;
+  padding:0;
+  overflow:hidden;
+  p {margin-bottom:24px;}
+  a {text-decoration:none;}
+  h1 {
+    .header_font;
+    font-weight:bold;
+    font-size:1.6em;
+    margin:0;
+    padding:36px 0 0 0
+  }
+  h2 {
+    .header_font;
+    font-weight:bold;
+    font-size:1.5em;
+    margin:0;
+    padding:24px 0 0 0
+  }
+  h3{font-weight:bold;font-size:1.4em;margin:0;padding:12px 0 0 0}
+  h4{font-weight:bold;font-size:1.3em;margin:0;padding:6px 0 0 0}
+  h5{font-weight:bold;font-size:1.2em;}
+  h6{font-weight:bold;font-size:1.1em;}
+  ul{list-style:square;margin:0 0 24px 1.5em}
+  dd{margin:0 0 24px 0}
+  dt{font-weight:bold}
+}
 #content .entry-content code, #content .entry-content pre {line-height:24px;color:@colour_darkblue;padding:12px;display:block;background:#fff;border-right:1px solid @colour_border;border-bottom:1px solid @colour_border;border-bottom-right-radius:10px; -webkit-border-bottom-right-radius:10px; -moz-border-radius-bottomright:10px}
 .entry-content pre {overflow-x:scroll;}
 #content:hover .entry-content code, #content:hover .entry-content pre {color:#000;}

@@ -12,20 +12,3 @@ This work, like WordPress, is released under GNU General Public License, version
 http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 .
 */
-
-/* Reset browser defaults */
-@import url('../thematic/library/styles/reset.css');
- 
-/* Apply basic typography styles */
-@import url('../thematic/library/styles/typography.css');
- 
-/* Apply a basic 3 column layout */
-@import url('../thematic/library/layouts/2c-r-fixed.css');
- 
-/* Apply basic image styles */
-@import url('../thematic/library/styles/images.css');
- 
-/* Apply styles for popular plugins */
-@import url('../thematic/library/styles/plugins.css');
-
-@import url('custom.css');

@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'less'
+require 'fileutils'
 
 SSH_USER="owengriffin.com"
 WP_DIR="/home/ogriffin/owengriffin.com/public/wp-content/themes/ogboumatic"
@@ -41,6 +42,12 @@ file "style.css" => stylesheets do |task|
       append_file(fh0, stylesheet)
     }
   end
+  system("java -jar yuicompressor.jar style.css -o style.css.cmp")
+  FileUtils.mv('style.css.cmp', 'style.css')
+end
+
+task :clean do
+  File.delete('style.css')
 end
 
 task :deploy => "style.css" do

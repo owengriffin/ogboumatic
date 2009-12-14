@@ -13,7 +13,15 @@ function childtheme_iefix() { ?>
 	<link rel="stylesheet" type="text/css" href="<?php echo bloginfo('stylesheet_directory') ?>/ie.css" />
     <![endif]-->
 <?php }
+
+function childtheme_syntaxhighlighter() { ?>
+  <script type="text/javascript" src="<?php echo bloginfo('stylesheet_directory') ?>/style.js"></script>
+<script type="text/javascript">
+    SyntaxHighlighter.all()
+</script>
+<?php }
  
+add_action('wp_head', 'childtheme_syntaxhighlighter');
 add_action('wp_head', 'childtheme_iefix');
 
 //	Overides default FULL SIZE image size

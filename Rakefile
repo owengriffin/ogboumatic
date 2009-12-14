@@ -8,11 +8,19 @@ WP_DIR="/home/ogriffin/owengriffin.com/public/wp-content/themes/ogboumatic"
 META_CSS="meta.css"
 
 THEMATIC_CSS = ['../thematic/library/styles/reset.css', 
-                      '../thematic/library/styles/typography.css',
-                      '../thematic/library/layouts/2c-r-fixed.css',
-                      '../thematic/library/styles/images.css',
-                      '../thematic/library/styles/plugins.css']
+                '../thematic/library/styles/typography.css',
+                '../thematic/library/layouts/2c-r-fixed.css',
+                '../thematic/library/styles/images.css',
+                '../thematic/library/styles/plugins.css']
 
+SYNTAX_HIGHLIGHTER_JS = ['syntaxhighlighter/scripts/shCore.js',
+                        'syntaxhighlighter/scripts/shBrushPlain.js',
+                        'syntaxhighlighter/scripts/shBrushRuby.js',
+                         'syntaxhighlighter/scripts/shBrushBash.js',
+                         'syntaxhighlighter/scripts/shBrushJScript.js',
+                        'syntaxhighlighter/scripts/shBrushCss.js']
+SYNTAX_HIGHLIGHTER_CSS = ['syntaxhighlighter/styles/shCore.css', 
+                          'syntaxhighlighter/styles/shThemeDefault.css']
 
 task :default => "style.css"
 
@@ -38,6 +46,9 @@ file "style.css" => stylesheets do |task|
     THEMATIC_CSS.each { |stylesheet|
       append_file(fh0, stylesheet)
     }
+    SYNTAX_HIGHLIGHTER_CSS.each { |stylesheet|
+      append_file(fh0, stylesheet)
+    }
     task.prerequisites.each { |stylesheet|
       append_file(fh0, stylesheet)
     }
@@ -46,11 +57,26 @@ file "style.css" => stylesheets do |task|
   FileUtils.mv('style.css.cmp', 'style.css')
 end
 
-task :clean do
-  File.delete('style.css')
+file "style.js" do |task|
+  File.open("style.js", "w") do |fh0|
+    SYNTAX_HIGHLIGHTER_JS.each { |js|
+      append_file(fh0, js)
+    }
+  end
+  system("java -jar yuicompressor.jar style.js -o style.js.cmp")
+  FileUtils.mv('style.js.cmp', 'style.js')
 end
 
-task :deploy => "style.css" do
+task :clean do
+  File.delete('style.css')
+  File.delete('style.js')
+end
+
+task :all => ["style.css", "style.js"] do
+  puts "Generated JS & CSS"
+end
+
+task :deploy => :all  do
   puts "Uploading changes to server"
-  system("rsync -avzP --exclude \"Rakefile\" --exclude \".git\" --exclude \"*\\~\" --delete . #{SSH_USER}:#{WP_DIR}")
+  system("rsync -avzP --exclude \"Rakefile\" --exclude \".jar\" --exclude \"yuicompressor-*\" --exclude \".git\" --exclude \"*\\~\" --delete . #{SSH_USER}:#{WP_DIR}")
 end

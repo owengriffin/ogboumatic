@@ -2,3 +2,6 @@ style.css
 custom.css
 *~
 yui*
+*.png
+syntaxhighlighter
+style.js
